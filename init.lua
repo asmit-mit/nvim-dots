@@ -64,6 +64,8 @@ vim.pack.add({
   { src = "https://github.com/stevearc/conform.nvim" },
   { src = "https://github.com/L3MON4D3/LuaSnip" },
   { src = "https://github.com/rafamadriz/friendly-snippets" },
+  -- { src = "https://github.com/mfussenegger/nvim-dap.git" },
+  -- { src = "https://github.com/rcarriga/nvim-dap-ui.git" },
 })
 
 vim.lsp.enable({
@@ -210,173 +212,33 @@ local Snacks = require("snacks")
 
 local snacks_keymaps = {
   -- find
-  {
-    "<leader>ff",
-    function()
-      Snacks.picker.smart()
-    end,
-    "Smart Find Files",
-  },
-  {
-    "<leader>fg",
-    function()
-      Snacks.picker.grep()
-    end,
-    "Grep",
-  },
-  {
-    "<leader>fb",
-    function()
-      Snacks.picker.buffers()
-    end,
-    "Buffers",
-  },
-  {
-    "<leader>fc",
-    function()
-      Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
-    end,
-    "Find Config File",
-  },
-  {
-    "<leader>fr",
-    function()
-      Snacks.picker.recent()
-    end,
-    "Recent",
-  },
+  { "<leader>ff", function() Snacks.picker.smart() end,                                   "Smart Find Files", },
+  { "<leader>fg", function() Snacks.picker.grep() end,                                    "Grep", },
+  { "<leader>fb", function() Snacks.picker.buffers() end,                                 "Buffers", },
+  { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, "Find Config File", },
+  { "<leader>fr", function() Snacks.picker.recent() end,                                  "Recent", },
   -- git
-  {
-    "<leader>gb",
-    function()
-      Snacks.picker.git_branches()
-    end,
-    "Git Branches",
-  },
-  {
-    "<leader>gl",
-    function()
-      Snacks.picker.git_log()
-    end,
-    "Git Log",
-  },
-  {
-    "<leader>gL",
-    function()
-      Snacks.picker.git_log_line()
-    end,
-    "Git Log Line",
-  },
-  {
-    "<leader>gs",
-    function()
-      Snacks.picker.git_status()
-    end,
-    "Git Status",
-  },
-  {
-    "<leader>gS",
-    function()
-      Snacks.picker.git_stash()
-    end,
-    "Git Stash",
-  },
-  {
-    "<leader>gd",
-    function()
-      Snacks.picker.git_diff()
-    end,
-    "Git Diff (Hunks)",
-  },
-  {
-    "<leader>gf",
-    function()
-      Snacks.picker.git_log_file()
-    end,
-    "Git Log File",
-  },
-  {
-    "<leader>gB",
-    function()
-      Snacks.gitbrowse()
-    end,
-    "Git Browse",
-    { "n", "v" },
-  },
-  {
-    "<leader>gg",
-    function()
-      Snacks.lazygit()
-    end,
-    "Lazygit",
-  },
+  { "<leader>gb", function() Snacks.picker.git_branches() end,                            "Git Branches", },
+  { "<leader>gl", function() Snacks.picker.git_log() end,                                 "Git Log", },
+  { "<leader>gL", function() Snacks.picker.git_log_line() end,                            "Git Log Line", },
+  { "<leader>gs", function() Snacks.picker.git_status() end,                              "Git Status", },
+  { "<leader>gS", function() Snacks.picker.git_stash() end,                               "Git Stash", },
+  { "<leader>gd", function() Snacks.picker.git_diff() end,                                "Git Diff (Hunks)", },
+  { "<leader>gf", function() Snacks.picker.git_log_file() end,                            "Git Log File", },
+  { "<leader>gB", function() Snacks.gitbrowse() end,                                      "Git Browse",                { "n", "v" }, },
+  { "<leader>gg", function() Snacks.lazygit() end,                                        "Lazygit", },
   -- buffers
-  {
-    "<leader>bl",
-    function()
-      Snacks.picker.lines()
-    end,
-    "Buffer Lines",
-  },
-  {
-    "<leader>bd",
-    function()
-      Snacks.bufdelete()
-    end,
-    "Buffer Delete",
-  },
-  {
-    "<leader>br",
-    function()
-      Snacks.rename.rename_file()
-    end,
-    "Buffer Rename",
-  },
+  { "<leader>bl", function() Snacks.picker.lines() end,                                   "Buffer Lines", },
+  { "<leader>bd", function() Snacks.bufdelete() end,                                      "Buffer Delete", },
+  { "<leader>br", function() Snacks.rename.rename_file() end,                             "Buffer Rename", },
   -- notif
-  {
-    "<leader>nh",
-    function()
-      Snacks.notifier.show_history()
-    end,
-    "Notification History",
-  },
-  {
-    "<leader>nd",
-    function()
-      Snacks.notifier.hide()
-    end,
-    "Dismiss All Notifications",
-  },
+  { "<leader>nh", function() Snacks.notifier.show_history() end,                          "Notification History", },
+  { "<leader>nd", function() Snacks.notifier.hide() end,                                  "Dismiss All Notifications", },
   -- misc
-  {
-    "<leader>:",
-    function()
-      Snacks.picker.command_history()
-    end,
-    "Command History",
-  },
-  {
-    "<leader>si",
-    function()
-      Snacks.picker.icons()
-    end,
-    "Icons",
-  },
-  -- { "<leader>uC", function() Snacks.picker.colorschemes() end, "Colorschemes" },
-  {
-    "<leader>Z",
-    function()
-      Snacks.zen.zoom()
-    end,
-    "Toggle Zoom",
-  },
-  {
-    "<c-/>",
-    function()
-      Snacks.terminal()
-    end,
-    "Toggle Terminal",
-  },
+  { "<leader>:",  function() Snacks.picker.command_history() end,                         "Command History" },
+  { "<leader>si", function() Snacks.picker.icons() end,                                   "Icons" },
+  { "<leader>Z",  function() Snacks.zen.zoom() end,                                       "Toggle Zoom" },
+  { "<c-/>",      function() Snacks.terminal() end,                                       "Toggle Terminal" },
 }
 
 for _, map in ipairs(snacks_keymaps) do
@@ -469,47 +331,37 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     keymap("n", "gd", vim.lsp.buf.definition, vim.tbl_extend("force", opts, { desc = "Go to definition" }))
 
-    keymap("n", "gD", function()
-      vim.lsp.buf.declaration()
-    end, vim.tbl_extend("force", opts, { desc = "Go to declaration" }))
+    keymap("n", "gD", function() vim.lsp.buf.declaration() end,
+      vim.tbl_extend("force", opts, { desc = "Go to declaration" }))
 
-    keymap("n", "gy", function()
-      Snacks.picker.lsp_type_definitions()
-    end, vim.tbl_extend("force", opts, { desc = "Go to type definition" }))
+    keymap("n", "gy", function() Snacks.picker.lsp_type_definitions() end,
+      vim.tbl_extend("force", opts, { desc = "Go to type definition" }))
 
-    keymap("n", "gS", function()
-      Snacks.picker.lsp_symbols()
-    end, vim.tbl_extend("force", opts, { desc = "List symbols" }))
+    keymap("n", "gS", function() Snacks.picker.lsp_symbols() end,
+      vim.tbl_extend("force", opts, { desc = "List symbols" }))
 
-    keymap("n", "gr", function()
-      Snacks.picker.lsp_references()
-    end, vim.tbl_extend("force", opts, { desc = "List references" }))
+    keymap("n", "gr", function() Snacks.picker.lsp_references() end,
+      vim.tbl_extend("force", opts, { desc = "List references" }))
 
-    keymap("n", "gI", function()
-      Snacks.picker.lsp_implementations()
-    end, vim.tbl_extend("force", opts, { desc = "Go to implementation" }))
+    keymap("n", "gI", function() Snacks.picker.lsp_implementations() end,
+      vim.tbl_extend("force", opts, { desc = "Go to implementation" }))
 
     keymap("n", "K", vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "Show hover information" }))
 
-    keymap("n", "<leader>la", function()
-      vim.lsp.buf.code_action()
-    end, vim.tbl_extend("force", opts, { desc = "Show code actions" }))
+    keymap("n", "<leader>la", function() vim.lsp.buf.code_action() end,
+      vim.tbl_extend("force", opts, { desc = "Show code actions" }))
 
-    keymap("n", "<leader>lr", function()
-      vim.lsp.buf.rename()
-    end, vim.tbl_extend("force", opts, { desc = "Rename symbol" }))
+    keymap("n", "<leader>lr", function() vim.lsp.buf.rename() end,
+      vim.tbl_extend("force", opts, { desc = "Rename symbol" }))
 
-    keymap("n", "<leader>lk", function()
-      vim.diagnostic.open_float()
-    end, vim.tbl_extend("force", opts, { desc = "Show diagnostics" }))
+    keymap("n", "<leader>lk", function() vim.diagnostic.open_float() end,
+      vim.tbl_extend("force", opts, { desc = "Show diagnostics" }))
 
-    keymap("n", "<leader>ln", function()
-      vim.diagnostic.goto_next()
-    end, vim.tbl_extend("force", opts, { desc = "Go to next diagnostic" }))
+    keymap("n", "<leader>ln", function() vim.diagnostic.goto_next() end,
+      vim.tbl_extend("force", opts, { desc = "Go to next diagnostic" }))
 
-    keymap("n", "<leader>lp", function()
-      vim.diagnostic.goto_prev()
-    end, vim.tbl_extend("force", opts, { desc = "Go to previous diagnostic" }))
+    keymap("n", "<leader>lp", function() vim.diagnostic.goto_prev() end,
+      vim.tbl_extend("force", opts, { desc = "Go to previous diagnostic" }))
   end,
 })
 
@@ -557,6 +409,46 @@ require("conform").setup({
     timeout_ms = 1000,
   },
 })
+
+
+-- local dap, dapui = require("dap"), require("dapui")
+-- dap.listeners.before.attach.dapui_config = function()
+--   dapui.open()
+-- end
+-- dap.listeners.before.launch.dapui_config = function()
+--   dapui.open()
+-- end
+-- dap.listeners.before.event_terminated.dapui_config = function()
+--   dapui.close()
+-- end
+-- dap.listeners.before.event_exited.dapui_config = function()
+--   dapui.close()
+-- end
+--
+-- vim.keymap.set("n", "<F5>", function() dap.continue() end, { desc = "DAP continue/run" })
+-- vim.keymap.set("n", "<F10>", function() dap.step_over() end, { desc = "DAP step over" })
+-- vim.keymap.set("n", "<F11>", function() dap.step_into() end, { desc = "DAP step into" })
+-- vim.keymap.set("n", "<F12>", function() dap.step_out() end, { desc = "DAP step out" })
+--
+-- vim.keymap.set("n", "<leader>db", function() dap.toggle_breakpoint() end, { desc = "DAP toggle breakpoint" })
+-- vim.keymap.set("n", "<leader>dB", function()
+--   dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
+-- end, { desc = "DAP conditional breakpoint" })
+--
+-- vim.keymap.set("n", "<leader>dr", function() dap.repl.open() end, { desc = "DAP open REPL" })
+-- vim.keymap.set("n", "<leader>dl", function() dap.run_last() end, { desc = "DAP run last" })
+-- vim.keymap.set("n", "<leader>du", function() dapui.toggle() end, { desc = "DAP toggle UI" })
+--
+-- vim.keymap.set("n", "<leader>dh", function() require("dap.ui.widgets").hover() end, { desc = "DAP hover variables" })
+-- vim.keymap.set("n", "<leader>dp", function() require("dap.ui.widgets").preview() end, { desc = "DAP preview" })
+-- vim.keymap.set("n", "<leader>df", function()
+--   local widgets = require("dap.ui.widgets")
+--   widgets.centered_float(widgets.frames)
+-- end, { desc = "DAP show frames" })
+-- vim.keymap.set("n", "<leader>ds", function()
+--   local widgets = require("dap.ui.widgets")
+--   widgets.centered_float(widgets.scopes)
+-- end, { desc = "DAP show scopes" })
 
 
 vim.lsp.config('pylsp', {
