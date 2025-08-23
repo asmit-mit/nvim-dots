@@ -8,6 +8,10 @@ vim.opt.swapfile = false
 vim.opt.autoindent = true
 vim.opt.expandtab = true
 
+vim.opt.undofile = true
+vim.opt.undodir = vim.fn.stdpath("config") .. "/undo"
+
+
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
@@ -64,8 +68,6 @@ vim.pack.add({
   { src = "https://github.com/stevearc/conform.nvim" },
   { src = "https://github.com/L3MON4D3/LuaSnip" },
   { src = "https://github.com/rafamadriz/friendly-snippets" },
-  -- { src = "https://github.com/mfussenegger/nvim-dap.git" },
-  -- { src = "https://github.com/rcarriga/nvim-dap-ui.git" },
 })
 
 vim.lsp.enable({
@@ -409,47 +411,6 @@ require("conform").setup({
     timeout_ms = 1000,
   },
 })
-
-
--- local dap, dapui = require("dap"), require("dapui")
--- dap.listeners.before.attach.dapui_config = function()
---   dapui.open()
--- end
--- dap.listeners.before.launch.dapui_config = function()
---   dapui.open()
--- end
--- dap.listeners.before.event_terminated.dapui_config = function()
---   dapui.close()
--- end
--- dap.listeners.before.event_exited.dapui_config = function()
---   dapui.close()
--- end
---
--- vim.keymap.set("n", "<F5>", function() dap.continue() end, { desc = "DAP continue/run" })
--- vim.keymap.set("n", "<F10>", function() dap.step_over() end, { desc = "DAP step over" })
--- vim.keymap.set("n", "<F11>", function() dap.step_into() end, { desc = "DAP step into" })
--- vim.keymap.set("n", "<F12>", function() dap.step_out() end, { desc = "DAP step out" })
---
--- vim.keymap.set("n", "<leader>db", function() dap.toggle_breakpoint() end, { desc = "DAP toggle breakpoint" })
--- vim.keymap.set("n", "<leader>dB", function()
---   dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
--- end, { desc = "DAP conditional breakpoint" })
---
--- vim.keymap.set("n", "<leader>dr", function() dap.repl.open() end, { desc = "DAP open REPL" })
--- vim.keymap.set("n", "<leader>dl", function() dap.run_last() end, { desc = "DAP run last" })
--- vim.keymap.set("n", "<leader>du", function() dapui.toggle() end, { desc = "DAP toggle UI" })
---
--- vim.keymap.set("n", "<leader>dh", function() require("dap.ui.widgets").hover() end, { desc = "DAP hover variables" })
--- vim.keymap.set("n", "<leader>dp", function() require("dap.ui.widgets").preview() end, { desc = "DAP preview" })
--- vim.keymap.set("n", "<leader>df", function()
---   local widgets = require("dap.ui.widgets")
---   widgets.centered_float(widgets.frames)
--- end, { desc = "DAP show frames" })
--- vim.keymap.set("n", "<leader>ds", function()
---   local widgets = require("dap.ui.widgets")
---   widgets.centered_float(widgets.scopes)
--- end, { desc = "DAP show scopes" })
-
 
 vim.lsp.config('pylsp', {
   settings = {
