@@ -17,56 +17,38 @@ vim.lsp.enable({
 
 local opts = { noremap = true, silent = true }
 
+vim.diagnostic.config({
+  virtual_text = { spacing = 4, prefix = "●" },
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
+})
+
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function()
     local keymap = vim.keymap.set
 
-    vim.diagnostic.config({
-      virtual_text = {
-        spacing = 4,
-        prefix = "●",
-      },
-      signs = true,
-      underline = true,
-      update_in_insert = false,
-      severity_sort = true,
-    })
-
     keymap("n", "gd", vim.lsp.buf.definition, vim.tbl_extend("force", opts, { desc = "Go to definition" }))
+    keymap("n", "gD", vim.lsp.buf.declaration, vim.tbl_extend("force", opts, { desc = "Go to declaration" }))
+    keymap("n", "K", vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "Show hover information" }))
+    keymap("n", "<leader>la", vim.lsp.buf.code_action, vim.tbl_extend("force", opts, { desc = "Show code actions" }))
+    keymap("n", "<leader>lr", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "Rename symbol" }))
+    keymap("n", "<leader>lf", vim.lsp.buf.format, vim.tbl_extend("force", opts, { desc = "Format Buffer" }))
 
-    keymap("n", "gD", function() vim.lsp.buf.declaration() end,
-      vim.tbl_extend("force", opts, { desc = "Go to declaration" }))
+    keymap("n", "<leader>lk", vim.diagnostic.open_float, vim.tbl_extend("force", opts, { desc = "Show diagnostics" }))
+    keymap("n", "<leader>ln", vim.diagnostic.goto_next, vim.tbl_extend("force", opts, { desc = "Go to next diagnostic" }))
+    keymap("n", "<leader>lp", vim.diagnostic.goto_prev,
+      vim.tbl_extend("force", opts, { desc = "Go to previous diagnostic" }))
 
     keymap("n", "gy", function() Snacks.picker.lsp_type_definitions() end,
       vim.tbl_extend("force", opts, { desc = "Go to type definition" }))
-
     keymap("n", "gS", function() Snacks.picker.lsp_symbols() end,
       vim.tbl_extend("force", opts, { desc = "List symbols" }))
-
     keymap("n", "gr", function() Snacks.picker.lsp_references() end,
       vim.tbl_extend("force", opts, { desc = "List references" }))
-
     keymap("n", "gI", function() Snacks.picker.lsp_implementations() end,
       vim.tbl_extend("force", opts, { desc = "Go to implementation" }))
-
-    keymap("n", "K", vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "Show hover information" }))
-
-    keymap("n", "<leader>la", function() vim.lsp.buf.code_action() end,
-      vim.tbl_extend("force", opts, { desc = "Show code actions" }))
-
-    keymap("n", "<leader>lr", function() vim.lsp.buf.rename() end,
-      vim.tbl_extend("force", opts, { desc = "Rename symbol" }))
-
-    keymap("n", "<leader>lk", function() vim.diagnostic.open_float() end,
-      vim.tbl_extend("force", opts, { desc = "Show diagnostics" }))
-
-    keymap("n", "<leader>ln", function() vim.diagnostic.goto_next() end,
-      vim.tbl_extend("force", opts, { desc = "Go to next diagnostic" }))
-
-    keymap("n", "<leader>lp", function() vim.diagnostic.goto_prev() end,
-      vim.tbl_extend("force", opts, { desc = "Go to previous diagnostic" }))
-
-    keymap("n", "<leader>lf", vim.lsp.buf.format, { desc = "Format Buffer" })
   end,
 })
 
