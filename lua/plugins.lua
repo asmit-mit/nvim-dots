@@ -172,6 +172,10 @@ local snacks_keymaps = {
   { "<leader>si", function() Snacks.picker.icons() end,                                   "Icons" },
   { "<leader>Z",  function() Snacks.zen.zoom() end,                                       "Toggle Zoom" },
   { "<c-/>",      function() Snacks.terminal() end,                                       "Toggle Terminal" },
+  -- lsp stuff
+  { "gy",         function() Snacks.picker.lsp_type_definitions() end,                    "Go to type definition" },
+  { "gS",         function() Snacks.picker.lsp_symbols() end,                             "List symbols" },
+  { "gr",         function() Snacks.picker.lsp_references() end,                          "List references" },
 }
 
 for _, map in ipairs(snacks_keymaps) do

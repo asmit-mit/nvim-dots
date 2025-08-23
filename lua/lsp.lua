@@ -40,15 +40,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     keymap("n", "<leader>ln", vim.diagnostic.goto_next, vim.tbl_extend("force", opts, { desc = "Go to next diagnostic" }))
     keymap("n", "<leader>lp", vim.diagnostic.goto_prev,
       vim.tbl_extend("force", opts, { desc = "Go to previous diagnostic" }))
-
-    keymap("n", "gy", function() Snacks.picker.lsp_type_definitions() end,
-      vim.tbl_extend("force", opts, { desc = "Go to type definition" }))
-    keymap("n", "gS", function() Snacks.picker.lsp_symbols() end,
-      vim.tbl_extend("force", opts, { desc = "List symbols" }))
-    keymap("n", "gr", function() Snacks.picker.lsp_references() end,
-      vim.tbl_extend("force", opts, { desc = "List references" }))
-    keymap("n", "gI", function() Snacks.picker.lsp_implementations() end,
-      vim.tbl_extend("force", opts, { desc = "Go to implementation" }))
   end,
 })
 
