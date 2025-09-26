@@ -37,8 +37,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
     keymap("n", "<leader>lf", vim.lsp.buf.format, vim.tbl_extend("force", opts, { desc = "Format Buffer" }))
 
     keymap("n", "<leader>lk", vim.diagnostic.open_float, vim.tbl_extend("force", opts, { desc = "Show diagnostics" }))
-    keymap("n", "<leader>ln", vim.diagnostic.goto_next, vim.tbl_extend("force", opts, { desc = "Go to next diagnostic" }))
-    keymap("n", "<leader>lp", vim.diagnostic.goto_prev,
+    keymap("n", "<leader>ln", function()
+      vim.diagnostic.jump({ count = 1, float = true })
+    end, vim.tbl_extend("force", opts, { desc = "Go to next diagnostic" }))
+    keymap("n", "<leader>lp", function()
+        vim.diagnostic.jump({ count = -1, float = true })
+      end,
       vim.tbl_extend("force", opts, { desc = "Go to previous diagnostic" }))
   end,
 })
