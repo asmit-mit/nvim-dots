@@ -13,6 +13,8 @@ vim.lsp.enable({
   "ts_ls",
   "vimls",
   "yamlls",
+  "mesonlsp",
+  "djlsp"
 })
 
 local opts = { noremap = true, silent = true }

@@ -19,7 +19,6 @@ vim.pack.add({
   { src = "https://github.com/rcarriga/nvim-dap-ui" },
   { src = "https://github.com/nvim-neotest/nvim-nio" },
   { src = "https://github.com/jay-babu/mason-nvim-dap.nvim" },
-  -- { src = "https://github.com/theHamsta/nvim-dap-virtual-text" },
 })
 
 
@@ -237,6 +236,8 @@ require("mason").setup({
     "ts_ls",
     "vimls",
     "yamlls",
+    "mesonlsp",
+    "djlsp",
     -- Formatters
     "clang-format",
     "djlint",
@@ -304,10 +305,6 @@ require("conform").setup({
 local mason_dap = require("mason-nvim-dap")
 local dap = require("dap")
 local dapui = require("dapui")
--- local dap_virtual_text = require("nvim-dap-virtual-text")
-
--- Dap Virtual Text
--- dap_virtual_text.setup()
 
 mason_dap.setup({
   ensure_installed = { "codelldb" },
