@@ -15,7 +15,8 @@
       "rev": "3946f01"
     },
     "mason-nvim-dap.nvim": {
-      "rev": "9a10e09"
+      "rev": "9a10e09",
+      "src": "https://github.com/jay-babu/mason-nvim-dap.nvim"
     },
     "mason-tool-installer.nvim": {
       "rev": "517ef59",

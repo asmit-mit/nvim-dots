@@ -21,6 +21,10 @@ vim.pack.add({
   { src = "https://github.com/jay-babu/mason-nvim-dap.nvim" },
 })
 
+-- Default options:
+require("gruvbox").setup({
+  contrast = "hard", -- can be "hard", "soft" or empty string
+})
 
 vim.cmd("colorscheme gruvbox")
 vim.cmd(":hi statusline guibg=NONE")
