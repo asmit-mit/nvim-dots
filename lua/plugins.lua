@@ -279,6 +279,7 @@ require("conform").setup({
     java = { "clang-format" },
     cmake = { "gersemi" },
     xml = { "xmlformatter" },
+    htmldjango = { "djlint" },
   },
   formatters = {
     black = {
