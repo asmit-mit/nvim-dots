@@ -19,6 +19,7 @@ vim.pack.add({
   { src = "https://github.com/rcarriga/nvim-dap-ui" },
   { src = "https://github.com/nvim-neotest/nvim-nio" },
   { src = "https://github.com/jay-babu/mason-nvim-dap.nvim" },
+  { src = "https://github.com/m4xshen/hardtime.nvim.git" },
 })
 
 -- Default options:
@@ -210,6 +211,8 @@ require("blink.cmp").setup({
     preset = "default",
     ["<C-j>"] = { "select_next", "fallback" },
     ["<C-k>"] = { "select_prev", "fallback" },
+    -- ["<Tab>"] = { "select_next", "fallback" },
+    -- ["<S-Tab>"] = { "select_prev", "fallback" },
   },
   snippets = {
     preset = "luasnip",
@@ -288,22 +291,12 @@ require("conform").setup({
     isort = {
       prepend_args = { "--line-length", "100" },
     },
-    ["clang-format"] = {
-      prepend_args = {
-        "--style={BasedOnStyle: LLVM, AlignAfterOpenBracket: BlockIndent, AlignConsecutiveAssignments: Consecutive}",
-      },
-    },
     djlint = {
       prepend_args = { "--indent", "2" },
     },
     prettier = {
       prepend_args = { "--print-width", "100" },
     },
-  },
-  format_on_save = {
-    lsp_fallback = true,
-    async = false,
-    timeout_ms = 1000,
   },
 })
 
@@ -367,6 +360,7 @@ dap.listeners.before.event_exited.dapui_config = function()
   dapui.close()
 end
 
+require("hardtime").setup()
 
 -- Debugger keymaps
 vim.keymap.set("n", "<leader>dt", dap.toggle_breakpoint, { desc = "Toggle Breakpoint" })
@@ -392,3 +386,5 @@ end, { desc = "Terminate" })
 vim.keymap.set("n", "<leader>db", dap.list_breakpoints, { desc = "List Breakpoints" })
 vim.keymap.set("n", "<leader>de", function() dap.set_exception_breakpoints({ "all" }) end,
   { desc = "Set Exception Breakpoints" })
+
+
