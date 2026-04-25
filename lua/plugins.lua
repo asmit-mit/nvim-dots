@@ -1,25 +1,26 @@
 vim.pack.add({
-  { src = "https://github.com/ellisonleao/gruvbox.nvim" },
-  { src = "https://github.com/stevearc/oil.nvim" },
-  { src = "https://github.com/folke/which-key.nvim" },
-  { src = "https://github.com/echasnovski/mini.nvim" },
-  { src = "https://github.com/nvim-lualine/lualine.nvim" },
-  { src = "https://github.com/folke/snacks.nvim" },
-  { src = "https://github.com/MunifTanjim/nui.nvim" },
-  { src = "https://github.com/folke/noice.nvim" },
-  { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
-  { src = "https://github.com/christoomey/vim-tmux-navigator" },
-  { src = "https://github.com/saghen/blink.cmp" },
-  { src = "https://github.com/neovim/nvim-lspconfig" },
-  { src = "https://github.com/williamboman/mason.nvim" },
-  { src = "https://github.com/stevearc/conform.nvim" },
-  { src = "https://github.com/L3MON4D3/LuaSnip" },
-  { src = "https://github.com/rafamadriz/friendly-snippets" },
-  { src = "https://github.com/mfussenegger/nvim-dap.git" },
-  { src = "https://github.com/rcarriga/nvim-dap-ui" },
-  { src = "https://github.com/nvim-neotest/nvim-nio" },
-  { src = "https://github.com/jay-babu/mason-nvim-dap.nvim" },
-  { src = "https://github.com/m4xshen/hardtime.nvim.git" },
+  "https://github.com/ellisonleao/gruvbox.nvim",
+  "https://github.com/stevearc/oil.nvim",
+  "https://github.com/folke/which-key.nvim",
+  "https://github.com/echasnovski/mini.nvim",
+  "https://github.com/nvim-lualine/lualine.nvim",
+  "https://github.com/folke/snacks.nvim",
+  "https://github.com/MunifTanjim/nui.nvim",
+  "https://github.com/folke/noice.nvim",
+  "https://github.com/nvim-treesitter/nvim-treesitter",
+  "https://github.com/christoomey/vim-tmux-navigator",
+  "https://github.com/saghen/blink.cmp",
+  "https://github.com/neovim/nvim-lspconfig",
+  "https://github.com/williamboman/mason.nvim",
+  "https://github.com/stevearc/conform.nvim",
+  "https://github.com/L3MON4D3/LuaSnip",
+  "https://github.com/rafamadriz/friendly-snippets",
+  "https://github.com/mfussenegger/nvim-dap.git",
+  "https://github.com/rcarriga/nvim-dap-ui",
+  "https://github.com/nvim-neotest/nvim-nio",
+  "https://github.com/jay-babu/mason-nvim-dap.nvim",
+  "https://github.com/m4xshen/hardtime.nvim.git",
+  "https://github.com/MeanderingProgrammer/render-markdown.nvim",
 })
 
 -- Default options:
@@ -29,6 +30,8 @@ require("gruvbox").setup({
 
 vim.cmd("colorscheme gruvbox")
 vim.cmd(":hi statusline guibg=NONE")
+
+require('render-markdown').setup({}) -- only mandatory if you want to set custom options
 
 require("oil").setup({
   keymaps = {
@@ -315,33 +318,20 @@ mason_dap.setup({
 })
 
 -- Configurations
-dap.configurations = {
-  cpp = {
-    {
-      name = "Launch file",
-      type = "codelldb",
-      request = "launch",
-      program = function()
-        return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-      end,
-      cwd = "${workspaceFolder}",
-      stopAtEntry = false,
-      MIMode = "lldb",
-    },
-    {
-      name = "Attach to lldbserver :1234",
-      type = "codelldb",
-      request = "launch",
-      MIMode = "lldb",
-      miDebuggerServerAddress = "localhost:1234",
-      miDebuggerPath = "/usr/bin/lldb",
-      cwd = "${workspaceFolder}",
-      program = function()
-        return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-      end,
-    },
+dap.configurations.cpp = {
+  {
+    name = "Launch file",
+    type = "codelldb",
+    request = "launch",
+    program = function()
+      return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+    end,
+    cwd = "${workspaceFolder}",
+    stopAtEntry = true,
   },
 }
+
+dap.configurations.c = dap.configurations.cpp
 
 dapui.setup()
 
@@ -360,7 +350,7 @@ dap.listeners.before.event_exited.dapui_config = function()
   dapui.close()
 end
 
-require("hardtime").setup()
+-- require("hardtime").setup()
 
 -- Debugger keymaps
 vim.keymap.set("n", "<leader>dt", dap.toggle_breakpoint, { desc = "Toggle Breakpoint" })
@@ -386,5 +376,3 @@ end, { desc = "Terminate" })
 vim.keymap.set("n", "<leader>db", dap.list_breakpoints, { desc = "List Breakpoints" })
 vim.keymap.set("n", "<leader>de", function() dap.set_exception_breakpoints({ "all" }) end,
   { desc = "Set Exception Breakpoints" })
-
-
