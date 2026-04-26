@@ -1,22 +1,3 @@
-vim.lsp.enable({
-  "clangd",
-  "cmake",
-  "cssls",
-  "emmet_ls",
-  "html",
-  "jsonls",
-  "lemminx",
-  "lua_ls",
-  "marksman",
-  "pylsp",
-  "rust_analyzer",
-  "ts_ls",
-  "vimls",
-  "yamlls",
-  "mesonlsp",
-  "djlint",
-})
-
 local opts = { noremap = true, silent = true }
 
 vim.diagnostic.config({
@@ -69,4 +50,19 @@ vim.lsp.config('lua_ls', {
       }
     }
   }
+})
+
+vim.lsp.enable({
+  "clangd",                     -- clangd
+  "cssls",                      -- css-lsp
+  "emmet_ls",                   -- emmet-ls
+  "html",                       -- html-lsp
+  "lua_ls",                     -- lua-language-server
+  "marksman",                   -- marksman
+  "pylsp",                      -- python-lsp-server
+  "rust_analyzer",              -- rust-analyzer
+  "mesonlsp",                   -- mesonlsp
+  "djls",                       -- django-language-server
+  "ts_query_ls",                -- ts_query_ls
+  "cmake",                      -- cmake-language-server
 })
