@@ -17,6 +17,20 @@ require("mini.move").setup({
 })
 
 require("mini.ai").setup()
-require("mini.pairs").setup()
-require("mini.surround").setup()
+
+require("mini.pairs").setup({
+  modes = { insert = true, command = true, terminal = false },
+  skip_ts = { "string" },
+  skip_unbalanced = true,
+})
+
+require("mini.surround").setup({
+  mappings = {
+    add = "gsa",
+    delete = "gsd",
+    highlight = "gsh",
+    replace = "gsr",
+  }
+})
+
 require("mini.icons").setup()
