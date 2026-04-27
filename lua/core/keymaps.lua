@@ -28,5 +28,7 @@ vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 vim.keymap.del("n", "<C-W>d")
 vim.keymap.del("n", "<C-W><C-D>")
 
+vim.keymap.set("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<CR>", { desc = "Toggle Markdown Preview", })
+
 vim.api.nvim_set_keymap('n', '<leader>/', ':terminal<CR>', opts)
 vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', opts)
