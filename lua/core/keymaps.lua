@@ -1,6 +1,12 @@
 local opts = { noremap = true, silent = true }
 
-vim.keymap.set("n", "<Esc>", ":nohl<CR>", { desc = "Clear search highlights" })
+vim.keymap.set("n", "<Esc>", function()
+  if vim.v.hlsearch == 1 then
+    vim.cmd("nohlsearch")
+    return ""
+  end
+  return "<Esc>"
+end, { expr = true, desc = "Clear search highlights" })
 
 vim.keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
 vim.keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
@@ -24,11 +30,14 @@ vim.keymap.set("n", "<C-Left>", ":vertical resize +2<CR>", opts)
 vim.keymap.set("n", "<C-Right>", ":vertical resize -2<CR>", opts)
 
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+-- vim.keymap.set("n", "-", function()
+--   require("mini.files").open()
+-- end, { desc = "Open parent directory" })
 
 vim.keymap.del("n", "<C-W>d")
 vim.keymap.del("n", "<C-W><C-D>")
 
 vim.keymap.set("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<CR>", { desc = "Toggle Markdown Preview", })
 
-vim.api.nvim_set_keymap('n', '<leader>/', ':terminal<CR>', opts)
-vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', opts)
+vim.keymap.set("n", "<leader>/", "<cmd>terminal<CR>", opts)
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", opts)

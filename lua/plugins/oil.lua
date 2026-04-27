@@ -1,5 +1,4 @@
 vim.pack.add({
-  "https://github.com/benomahony/oil-git.nvim",
   "https://github.com/stevearc/oil.nvim",
 })
 
@@ -11,8 +10,8 @@ require("oil").setup({
   },
   columns = {
     "icon",
-    "permissions",
-    "size",
-    "mtime",
+    -- "permissions",
+    -- "size",
+    -- "mtime",
   },
 })
