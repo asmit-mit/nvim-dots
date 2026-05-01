@@ -42,7 +42,20 @@ end, { desc = "Open root directory" })
 vim.keymap.del("n", "<C-W>d")
 vim.keymap.del("n", "<C-W><C-D>")
 
-vim.keymap.set("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<CR>", { desc = "Toggle Markdown Preview", })
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    vim.keymap.set(
+      "n",
+      "<leader>mp",
+      "<cmd>MarkdownPreviewToggle<CR>",
+      {
+        buffer = true,
+        desc = "Toggle Markdown Preview",
+      }
+    )
+  end,
+})
 
-vim.keymap.set("n", "<leader>/", "<cmd>terminal<CR>", opts)
+vim.keymap.set("n", "<C-\\>", "<cmd>ToggleTerm<CR>", opts)
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", opts)
