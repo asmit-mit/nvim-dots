@@ -59,3 +59,34 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.keymap.set("n", "<C-\\>", "<cmd>ToggleTerm<CR>", opts)
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", opts)
+
+
+-- Debugger keymaps
+vim.keymap.set("n", "<leader>dt", "<cmd>DapToggleBreakpoint<CR>", { desc = "Toggle Breakpoint" })
+
+-- Leader key mappings
+vim.keymap.set("n", "<leader>dc", "<cmd>DapContinue<CR>", { desc = "Continue" })
+vim.keymap.set("n", "<leader>di", "<cmd>DapStepInto<CR>", { desc = "Step Into" })
+vim.keymap.set("n", "<leader>do", "<cmd>DapStepOver<CR>", { desc = "Step Over" })
+vim.keymap.set("n", "<leader>du", "<cmd>DapStepOut<CR>", { desc = "Step Out" })
+
+-- Function key mappings
+vim.keymap.set("n", "<F2>", "<cmd>DapContinue<CR>", { desc = "Continue" })
+vim.keymap.set("n", "<F3>", "<cmd>DapStepInto<CR>", { desc = "Step Into" })
+vim.keymap.set("n", "<F4>", "<cmd>DapStepOver<CR>", { desc = "Step Over" })
+vim.keymap.set("n", "<F5>", "<cmd>DapStepOut<CR>", { desc = "Step Out" })
+
+-- dap view keymaps
+vim.keymap.set("n", "<leader>dv", "<cmd>DapViewToggle<CR>", { desc = "Toggle Dap View" })
+vim.keymap.set("n", "<leader>dq", "<cmd>DapTerminate<CR>", { desc = "Close Debug Session" })
+vim.keymap.set("n", "<leader>dw", "<cmd>DapViewWatch<CR>", { desc = "Dap Watch" })
+vim.keymap.set("n", "<leader>dh", function()
+  require("dap.ui.widgets").hover()
+end, { desc = "Dap Hover" })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "dap-float",
+  callback = function()
+    vim.api.nvim_buf_set_keymap(0, "n", "q", "<cmd>close!<CR>", { noremap = true, silent = true })
+  end
+})
