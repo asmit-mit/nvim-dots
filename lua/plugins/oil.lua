@@ -1,4 +1,7 @@
-vim.pack.add({ "https://github.com/stevearc/oil.nvim" })
+vim.pack.add({
+  "https://github.com/JezerM/oil-lsp-diagnostics.nvim",
+  "https://github.com/stevearc/oil.nvim",
+})
 
 require("oil").setup({
   keymaps = {
@@ -12,4 +15,8 @@ require("oil").setup({
     -- "size",
     -- "mtime",
   },
+})
+
+require("oil-lsp-diagnostics").setup({
+  show_diagnostics = true,
 })
