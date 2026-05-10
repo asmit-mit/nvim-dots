@@ -23,10 +23,10 @@ require('mason-tool-installer').setup {
     "marksman",
     "python-lsp-server",
     "rust-analyzer",
-    "ts_query_ls",
     "mesonlsp",
     "cmake-language-server",
     "django-language-server",
+    "typescript-language-server",
     -- Formatters
     "clang-format",
     "djlint",

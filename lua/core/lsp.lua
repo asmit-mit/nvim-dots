@@ -63,6 +63,6 @@ vim.lsp.enable({
   "rust_analyzer",              -- rust-analyzer
   "mesonlsp",                   -- mesonlsp
   "djls",                       -- django-language-server
-  "ts_query_ls",                -- ts_query_ls
+  "ts_ls",                      -- typescript_language_server
   "cmake",                      -- cmake-language-server
 })
