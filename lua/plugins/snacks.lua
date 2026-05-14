@@ -63,21 +63,11 @@ local snacks_keymaps = {
   { "<leader>gf", function() Snacks.picker.git_log_file() end,                            "Git Log File", },
   { "<leader>gB", function() Snacks.gitbrowse() end,                                      "Git Browse",                { "n", "v" }, },
   { "<leader>gg", function() Snacks.lazygit() end,                                        "Lazygit", },
-  -- buffers
-  { "<leader>bl", function() Snacks.picker.lines() end,                                   "Buffer Lines", },
-  { "<leader>bd", function() Snacks.bufdelete() end,                                      "Buffer Delete", },
-  { "<leader>br", function() Snacks.rename.rename_file() end,                             "Buffer Rename", },
   -- notif
   { "<leader>nh", function() Snacks.notifier.show_history() end,                          "Notification History", },
   { "<leader>nd", function() Snacks.notifier.hide() end,                                  "Dismiss All Notifications", },
   -- misc
-  { "<leader>:",  function() Snacks.picker.command_history() end,                         "Command History" },
   { "<leader>si", function() Snacks.picker.icons() end,                                   "Icons" },
-  { "<leader>Z",  function() Snacks.zen.zoom() end,                                       "Toggle Zoom" },
-  -- lsp stuff
-  { "gy",         function() Snacks.picker.lsp_type_definitions() end,                    "Go to type definition" },
-  { "gS",         function() Snacks.picker.lsp_symbols() end,                             "List symbols" },
-  { "gr",         function() Snacks.picker.lsp_references() end,                          "List references" },
 }
 
 for _, map in ipairs(snacks_keymaps) do
