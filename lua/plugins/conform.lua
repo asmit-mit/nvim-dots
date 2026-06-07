@@ -16,12 +16,10 @@ require("conform").setup({
     html = { "prettier" },
     css = { "prettier" },
     htmldjango = { "djlint" },
+    python = { "black" },
   },
   formatters = {
     black = {
-      prepend_args = { "--line-length", "100" },
-    },
-    isort = {
       prepend_args = { "--line-length", "100" },
     },
     djlint = {

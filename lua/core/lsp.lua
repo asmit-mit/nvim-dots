@@ -20,7 +20,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     keymap("n", "K", vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "Show hover information" }))
     keymap("n", "<leader>la", vim.lsp.buf.code_action, vim.tbl_extend("force", opts, { desc = "Show code actions" }))
     keymap("n", "<leader>lr", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "Rename symbol" }))
-    keymap("n", "<leader>lf", vim.lsp.buf.format, vim.tbl_extend("force", opts, { desc = "Format Buffer" }))
+    keymap("n", "<leader>lf", function() require("conform").format({ async = true }) end,
+      vim.tbl_extend("force", opts, { desc = "Format buffer" }))
 
     keymap("n", "<leader>lk", vim.diagnostic.open_float, vim.tbl_extend("force", opts, { desc = "Show diagnostics" }))
     keymap("n", "<leader>ln", function() vim.diagnostic.jump({ count = 1, float = true }) end,
@@ -30,16 +31,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
-vim.lsp.config('pylsp', {
+vim.lsp.config("basedpyright", {
   settings = {
-    pylsp = {
-      plugins = {
-        pycodestyle = {
-          ignore = { 'E501' },
-        }
-      }
-    }
-  }
+    basedpyright = {
+      analysis = {
+        typeCheckingMode = "off",
+      },
+    },
+  },
 })
 
 vim.lsp.config('lua_ls', {
@@ -59,7 +58,7 @@ vim.lsp.enable({
   "html",          -- html-lsp
   "lua_ls",        -- lua-language-server
   "marksman",      -- marksman
-  "pylsp",         -- python-lsp-server
+  "basedpyright",  -- basedpyright
   "rust_analyzer", -- rust-analyzer
   "mesonlsp",      -- mesonlsp
   "djls",          -- django-language-server

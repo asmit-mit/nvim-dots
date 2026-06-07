@@ -21,7 +21,7 @@ require('mason-tool-installer').setup {
     "html-lsp",
     "lua-language-server",
     "marksman",
-    "python-lsp-server",
+    "basedpyright",
     "rust-analyzer",
     "mesonlsp",
     "cmake-language-server",
@@ -32,6 +32,7 @@ require('mason-tool-installer').setup {
     "djlint",
     "gersemi",
     "prettier",
+    "black",
     -- Debuggers
     "codelldb",
   },
