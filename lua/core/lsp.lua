@@ -22,6 +22,26 @@ vim.api.nvim_create_autocmd("LspAttach", {
     keymap("n", "<leader>lr", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "Rename symbol" }))
     keymap("n", "<leader>lf", function() require("conform").format({ async = true }) end,
       vim.tbl_extend("force", opts, { desc = "Format buffer" }))
+    keymap("n", "<leader>lq", vim.diagnostic.setqflist, vim.tbl_extend("force", opts, { desc = "Diagnostics to quickfix" }))
+
+    keymap("n", "<leader>lx", function()
+      local bufnr = vim.api.nvim_get_current_buf()
+      if vim.diagnostic.is_enabled({ bufnr = bufnr }) then
+        vim.diagnostic.enable(false, { bufnr = bufnr })
+      else
+        vim.diagnostic.enable(true, { bufnr = bufnr })
+      end
+    end, vim.tbl_extend("force", opts, { desc = "Toggle diagnostics" }))
+
+    keymap("n", "<leader>lv", function()
+      local cfg = vim.diagnostic.config()
+
+      if cfg.virtual_text then
+        vim.diagnostic.config({ virtual_text = false })
+      else
+        vim.diagnostic.config({ virtual_text = true })
+      end
+    end, vim.tbl_extend("force", opts, { desc = "Toggle virtual lines" }))
 
     keymap("n", "<leader>lk", vim.diagnostic.open_float, vim.tbl_extend("force", opts, { desc = "Show diagnostics" }))
     keymap("n", "<leader>ln", function() vim.diagnostic.jump({ count = 1, float = true }) end,
@@ -31,14 +51,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
-vim.lsp.config("basedpyright", {
+vim.lsp.config('basedpyright', {
   settings = {
-    basedpyright = {
-      analysis = {
-        typeCheckingMode = "off",
-      },
-    },
-  },
+    analysis = {
+      typechecking = "off"
+    }
+  }
 })
 
 vim.lsp.config('lua_ls', {
