@@ -17,6 +17,7 @@ require("conform").setup({
     css = { "prettier" },
     htmldjango = { "djlint" },
     python = { "black" },
+    lua = { "stylua" },
   },
   formatters = {
     black = {
