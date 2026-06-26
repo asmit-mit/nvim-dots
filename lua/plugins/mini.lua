@@ -36,3 +36,11 @@ require("mini.surround").setup({
 require("mini.icons").setup()
 
 require("mini.files").setup()
+
+require("mini.diff").setup({
+  view = {
+    style = "sign",
+    signs = { add = " ▒", change = " ▒", delete = " ▒" },
+    priority = 199,
+  },
+})
