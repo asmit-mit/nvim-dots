@@ -15,7 +15,6 @@ require("mason").setup({
 
 require('mason-tool-installer').setup {
   ensure_installed = {
-    "clangd",
     "css-lsp",
     "emmet-ls",
     "html-lsp",

@@ -62,7 +62,6 @@ local snacks_keymaps = {
   { "<leader>gd", function() Snacks.picker.git_diff() end, "Git Diff (Hunks)", },
   { "<leader>gf", function() Snacks.picker.git_log_file() end, "Git Log File", },
   { "<leader>gB", function() Snacks.gitbrowse() end, "Git Browse",                { "n", "v" }, },
-  { "<leader>gg", function() Snacks.lazygit() end, "Lazygit", },
   -- notif
   { "<leader>nh", function() Snacks.notifier.show_history() end, "Notification History", },
   { "<leader>nd", function() Snacks.notifier.hide() end, "Dismiss All Notifications", },
