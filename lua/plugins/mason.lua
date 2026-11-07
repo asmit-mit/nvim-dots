@@ -20,10 +20,10 @@ require('mason-tool-installer').setup {
     "html-lsp",
     "lua-language-server",
     "marksman",
-    "basedpyright",
+    "python-lsp-server",
     "rust-analyzer",
     "mesonlsp",
-    "cmake-language-server",
+    -- "cmake-language-server",
     "django-language-server",
     "typescript-language-server",
     -- Formatters

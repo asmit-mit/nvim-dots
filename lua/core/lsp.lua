@@ -11,7 +11,7 @@ end
 
 vim.diagnostic.config({
   virtual_text = { spacing = 4, prefix = "●" },
-  signs = false,
+  signs = true,
   underline = true,
   update_in_insert = false,
   severity_sort = true,
@@ -136,11 +136,12 @@ vim.lsp.enable({
   "html", -- html-lsp
   "lua_ls", -- lua-language-server
   "marksman", -- marksman
-  "basedpyright", -- basedpyright
+  "pylsp", -- basedpyright
   "rust_analyzer", -- rust-analyzer
   "mesonlsp", -- mesonlsp
   "djls", -- django-language-server
   "ts_ls", -- typescript_language_server
   "cmake", -- cmake-language-server
   "tinymist",
+  "qmlls",
 })

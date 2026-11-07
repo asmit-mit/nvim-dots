@@ -1,13 +1,16 @@
 local opts = { noremap = true, silent = true }
 local keymap = vim.keymap.set
 
-keymap("n", "<Esc>", function()
-  if vim.v.hlsearch == 1 then
-    vim.cmd("nohlsearch")
-    return ""
-  end
-  return "<Esc>"
-end, { expr = true, desc = "Clear search highlights" })
+vim.keymap.set('n', '<Esc>', function()
+    local ns = vim.api.nvim_create_namespace('nvim.multicursor')
+    local cursors = vim.api.nvim_buf_get_extmarks(0, ns, 0, -1, { limit = 1 })
+
+    if #cursors > 0 then
+        vim.api.nvim_buf_clear_namespace(0, ns, 0, -1)
+    else
+        vim.cmd('nohlsearch')
+    end
+end)
 
 keymap("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
 keymap("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })

@@ -8,7 +8,6 @@ vim.opt.swapfile = false
 vim.opt.autoindent = true
 vim.opt.expandtab = true
 
-
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
