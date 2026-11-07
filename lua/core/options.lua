@@ -2,6 +2,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 vim.opt.wrap = false
+vim.o.winborder = "rounded"  -- or "single", "double", "solid", "shadow"
 
 vim.opt.shiftwidth = 2
 vim.opt.swapfile = false

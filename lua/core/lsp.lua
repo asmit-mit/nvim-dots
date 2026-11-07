@@ -51,6 +51,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.lsp.buf.hover,
       vim.tbl_extend("force", opts, { desc = "Show hover information" })
     )
+    keymap(
+      "i",
+      "<C-k>",
+      vim.lsp.buf.signature_help,
+      vim.tbl_extend("force", opts, { desc = "Show signature help" })
+    )
     keymap("n", "<leader>la", function()
       vim.lsp.buf.code_action()
     end, vim.tbl_extend("force", opts, { desc = "Show code actions" }))

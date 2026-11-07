@@ -18,6 +18,7 @@ require("conform").setup({
     htmldjango = { "djlint" },
     python = { "black" },
     lua = { "stylua" },
+    meson = {},
   },
   formatters = {
     black = {
@@ -29,5 +30,8 @@ require("conform").setup({
     prettier = {
       prepend_args = { "--print-width", "100" },
     },
+  },
+  default_format_opts = {
+    lsp_format = "fallback",
   },
 })
